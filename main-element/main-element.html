@@ -1,0 +1,39 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<dom-module id="main-element">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello [[prop1]]!</h2>
+    <div id="animatable">I'm animated!</div>
+  </template>
+
+  <script>
+    /**
+     * `main-element`
+     * 
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class MainElement extends 
+    Polymer.mixinBehaviors([Polymer.NeonAnimationRunnerBehavior],
+    Polymer.Element) {
+      static get is() { return 'main-element'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'main-element'
+          }
+        };
+      }
+    }
+
+    window.customElements.define(MainElement.is, MainElement);
+  </script>
+</dom-module>

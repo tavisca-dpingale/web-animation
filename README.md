@@ -1,6 +1,5 @@
-echo "# web-animation" >> README.md
-git init
-git add README.md
-git commit -m "first commit"
-git remote add origin git@github.com:tavisca-dpingale/web-animation.git
-git push -u origin master
+## webanimation test project
+
+```
+web animations
+```
