@@ -39,8 +39,8 @@
       __show() {
         const animation = this.$.animatable.animate([
           {transform:'translateY(0)', opacity: 1, easing: 'ease-out'},
-          {transform:'translateY(100%)', opacity: 1, easing: 'ease-in'},
-          {transform:'translateY(100%)', opacity: 0 }
+          {transform:'translateY(50%)', opacity: 0.5, easing: 'ease-in'},
+          {transform:'translateY(100%) rotate(-20deg)', opacity: 0 }
         ],
         {
           duration: 1500,
