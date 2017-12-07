@@ -1,14 +1,15 @@
-<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/neon-animation/web-animations.html">
 
 <dom-module id="main-element">
   <template>
     <style>
-      :host {
+       :host {
         display: block;
       }
     </style>
-    <h2>Hello [[prop1]]!</h2>
-    <div id="animatable">I'm animated!</div>
+    <p><a on-click="__show">click me</a> [[prop1]]!</p>
+    <h2 id="animatable">I'm animated!</h2>
   </template>
 
   <script>
@@ -20,10 +21,12 @@
      * @polymer
      * @demo demo/index.html
      */
-    class MainElement extends 
+    class MainElement extends
     Polymer.mixinBehaviors([Polymer.NeonAnimationRunnerBehavior],
-    Polymer.Element) {
-      static get is() { return 'main-element'; }
+      Polymer.Element) {
+      static get is() {
+        return 'main-element';
+      }
       static get properties() {
         return {
           prop1: {
@@ -31,6 +34,23 @@
             value: 'main-element'
           }
         };
+      }
+
+      __show() {
+        const animation = this.$.animatable.animate([
+          {transform:'translateY(0)', opacity: 1, easing: 'ease-out'},
+          {transform:'translateY(100%)', opacity: 1, easing: 'ease-in'},
+          {transform:'translateY(100%)', opacity: 0 }
+        ],
+        {
+          duration: 1500,
+        });
+      
+        animation.finished.then(() => {
+          // Preserve end position of the animation
+          this.$.animatable.style.transform = 'translateY(100%)';
+          this.$.animatable.style.opacity = 0;
+        });
       }
     }
 
